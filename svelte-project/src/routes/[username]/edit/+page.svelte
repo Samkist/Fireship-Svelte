@@ -10,6 +10,7 @@
       updateDoc,
     } from "firebase/firestore";
     import { writable } from "svelte/store";
+    import SortableList from "$lib/components/SortableList.svelte";
 
     const icons = [
       "Twitter",
@@ -34,7 +35,6 @@
     $: titleIsValid = $formData.title.length < 20 && $formData.title.length > 0;
     $: formIsValid = urlIsValid && titleIsValid;
 
-
     async function addLink(e: SubmitEvent) {
       const userRef = doc(db, "users", $user!.uid);
 
@@ -54,6 +54,11 @@
       showForm = false;
     }
 
+    function sortList(e: CustomEvent) {
+      const newList = e.detail;
+      const userRef = doc(db, "users", $user!.uid);
+      setDoc(userRef, { links: newList }, { merge: true });
+    }
 
     async function deleteLink(item: any) {
       const userRef = doc(db, "users", $user!.uid);
@@ -66,7 +71,6 @@
       formData.set(formDefaults);
       showForm = false;
     }
-
 </script>
 
   <main class="max-w-xl mx-auto">
@@ -75,13 +79,22 @@
         Edit your Profile
       </h1>
 
-      <!-- INSERT sortable list here -->
+      <SortableList list={$userData?.links} on:sort={sortList} let:item let:index>
+        <div class="group relative">
+          <UserLink {...item} />
+          <button
+            on:click={() => deleteLink(item)}
+            class="btn btn-xs btn-error invisible group-hover:visible transition-all absolute -right-6 bottom-10"
+            >Delete</button
+          >
+        </div>
+      </SortableList>
 
       {#if showForm}
         <form
           on:submit|preventDefault={addLink}
           class="bg-neutral p-6 w-full mx-auto rounded-xl space-x-5 items-center space-y-5">
-        <!--class="bg-base-200 p-6 w-full mx-auto rounded-xl"-->
+          <!--class="bg-base-200 p-6 w-full mx-auto rounded-xl"-->
           <select
             name="icon"
             class="select select-sm"
