@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { LayoutData } from './$types';
-    
+    import { typewriter } from '$lib/typewriter';
+
     export let data: LayoutData;
 </script>
 
