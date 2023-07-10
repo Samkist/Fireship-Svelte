@@ -1,8 +1,9 @@
 <script lang="ts">
     import { page } from "$app/stores";
-  </script>
+    import { scale } from 'svelte/transition';
+</script>
   
-  <nav class="flex justify-center my-6">
+  <nav class="flex justify-center my-20">
     <ul class="steps">
       <a href="/login" class="step step-primary">Sign In</a>
       <a
@@ -20,7 +21,7 @@
     </ul>
   </nav>
   
-  <main class="card w-4/6 bg-neutral text-neutral-content mx-auto">
+  <main in:scale class="card w-96 bg-neutral mx-auto">
     <div class="card-body items-center text-center">
       <slot />
     </div>

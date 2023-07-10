@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "SvelteKit: Debug Server Side",
+      "type": "node-terminal",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/svelte-project/",
+      "command": "npm run dev"
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "Svelte: Firefox",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/svelte-project/src"
+    },
+    {
+      "name": "Next.js: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
+    }
+  ]
+}
