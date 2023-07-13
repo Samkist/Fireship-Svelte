@@ -4,7 +4,7 @@
 </script>
 
 <a href='/' class='-m-1.5 p-1.5'>
-	<span class='sr-only'>Your Company</span>
+	<span class='sr-only'>Muse</span>
 <svg width='50px' height='50px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
 	<path d='M2 12H9.5M22 12H14.5' stroke='#4f46e5' stroke-width='1.5' stroke-linecap='round' />
 	<path

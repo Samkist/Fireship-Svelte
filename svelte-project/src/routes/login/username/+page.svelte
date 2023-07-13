@@ -1,6 +1,6 @@
 <script lang='ts'>
 	import AuthCheck from '$lib/components/AuthCheck.svelte';
-  import { db, user, userData } from '$lib/firebase';
+  	import { db, user, userData } from '$lib/firebase';
 	import { doc, getDoc, writeBatch } from 'firebase/firestore';
 	import { fade, crossfade, blur } from 'svelte/transition';
 
@@ -57,10 +57,10 @@
 		<AuthCheck>
       {#if $userData?.username}
         <p class='card-body'>Your username is <span class='text-success font-bold'>
-          {$userData?.username}
+          @{$userData?.username}
         </span>
         </p>
-        <p class='card-body'>(Usernames cannot be changed)</p>
+        <p class='card-body semi-bold'>(Usernames cannot be changed)</p>
         <a class='btn card-body' href='/login/photo'>Upload Profile Image</a>
       {:else}
 			<form class='flex-col' on:submit|preventDefault={confirmUsername}>
@@ -76,23 +76,25 @@
 				/>
 				<div class='my-4 min-h-16 px-8 w-full'>
 					{#if loading && isValid}
-						<p class='text-warning'>Checking availability of {username}...</p>
+						<p class='text-warning semi-bold'>
+							Checking @{username}...
+						</p>
 					{/if}
 
 					{#if !isValid && isTouched}
-						<p class='text-error text-sm'>
-							Must be 3-16 characters long. Alphanumeric only
+						<p class='text-error semi-bold'>
+							Must be 3-16 characters long. Alphanumeric only.
 						</p>
 					{/if}
 
 					{#if isValid && !isAvailable && !loading}
-						<p class='text-warning text-sm'>
-							{username} is not available
+						<p class='text-warning semi-bold'>
+							@{username} is not available
 						</p>
 					{/if}
 
 					{#if isAvailable}
-						<button class='btn btn-success'>Confirm username {username} </button>
+						<button class='btn btn-success'>Confirm username @{username} </button>
 					{/if}
 				</div>
 			</form>

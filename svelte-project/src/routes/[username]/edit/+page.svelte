@@ -76,7 +76,7 @@
   <main class="max-w-xl mx-auto">
     {#if $userData?.username === $page.params.username}
       <h1 class="mx-2 text-2xl font-bold mt-8 mb-4 text-center">
-        Edit your Profile
+        Edit Your Profile
       </h1>
 
       <SortableList list={$userData?.links} on:sort={sortList} let:item let:index>
@@ -94,7 +94,7 @@
         <form
           on:submit|preventDefault={addLink}
           class="bg-neutral p-6 w-full mx-auto rounded-xl space-x-5 items-center space-y-5">
-          <!--class="bg-base-200 p-6 w-full mx-auto rounded-xl"-->
+        <!--class="bg-base-200 p-6 w-full mx-auto rounded-xl"-->
           <select
             name="icon"
             class="select select-sm"
